@@ -56,7 +56,7 @@ price-aggregator-api:
           - SELECT .filters-expand | ANY | CLICK
         selector: SELECT .sidebar-filter__header-title-text | TEXT | TRIM | JOIN with=1
         other:
-          - SELECT .filter-checklist__item | GROUP_BY parent | TEXT | DISTINCT
+          - SELECT .filter-checklist__item | VISIBLE | GROUP_BY parent | TEXT
       products:
         filters:
           template: SELECT .sidebar-filters__item | FILTER selector=.sidebar-filter__header-title-text,text=$(['key_%d']) | ANY | SELECT .filter-checklist__item-name | FILTER text=$(['value_%d']) | ANY | CLICK
@@ -70,7 +70,7 @@ price-aggregator-api:
             - SELECT .filter-price__range-btn | FIRST | CLICK
             - SELECT .page | FILTER text=$(['page']) | FIRST | CLICK
           image-selector: SELECT .list-item__img,.promo-list-item__img | SCREENSHOT | BASE64 | TO_LIST
-          link-selector: SELECT .item-title,.promo-list-item__title | ATTRIBUTE href | DISTINCT | TO_LIST
+          link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href | TO_LIST
           price-selector: SELECT .list-item__value--overlay,.promo-list-item__value--overlay | SCREENSHOT | BASE64 | TO_LIST
           description-selector: SELECT .list-item__info,.promo-list-item__info | SCREENSHOT | BASE64 | TO_LIST
           pages-count-selector: SELECT .page | TEXT | TRIM | LAST
