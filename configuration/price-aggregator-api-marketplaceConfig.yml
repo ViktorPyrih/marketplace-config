@@ -68,6 +68,7 @@ price-aggregator-api:
             - SELECT .filter-price__range-field | BY_INDEX 0 | INPUT value=$(['minPrice'])
             - SELECT .filter-price__range-field | BY_INDEX 1 | INPUT value=$(['maxPrice'])
             - SELECT .filter-price__range-btn | FIRST | CLICK
+            - WAIT 2000
             - SELECT .page | FILTER text=$(['page']) | FIRST | CLICK
           image-selector: SELECT .list-item__img,.promo-list-item__img | SCREENSHOT | BASE64 | TO_LIST
           link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href | TO_LIST
