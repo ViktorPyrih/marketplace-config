@@ -51,10 +51,10 @@ price-aggregator-api:
         selector: SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory']) | FIRST | SELECT .catalog-sections-sub-catalog__item | TEXT
       filters:
         actions:
-          - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__item | FILTER text=$(['subcategory2']) | FIRST | CLICK
+          - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
           - WAIT 2000
           - SELECT .filters-expand | ANY | CLICK
-        selector: SELECT .sidebar-filter__header-title-text | IGNORE 8 | TEXT | TRIM | JOIN with=1
+        selector: SELECT .sidebar-filter__header-title-text | TEXT | TRIM | JOIN with=1
         other:
           - SELECT .filter-checklist__item | GROUP_BY parent | TEXT | DISTINCT
       products:
