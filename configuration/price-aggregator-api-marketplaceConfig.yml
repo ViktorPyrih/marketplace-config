@@ -24,7 +24,7 @@ price-aggregator-api:
           - SELECT ul.list>li.match-li-href | GROUP_BY parent_id | TEXT
       products:
         filters:
-          template: SELECT .match-li-href | FILTER text=$(['value_%d']) | ANY | SELECT input | ANY | CLICK mode=if_not_checked
+          template: SELECT .match-li-href | FILTER text=$(['value_%d']) | ANY | CLICK
         self:
           actions:
             - SELECT a.mainmenu-link | FILTER text=$(['category']) | FIRST | HOVER
