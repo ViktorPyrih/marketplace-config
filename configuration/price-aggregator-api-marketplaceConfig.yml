@@ -53,7 +53,6 @@ price-aggregator-api:
         actions:
           - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
           - WAIT 2000
-          - SELECT .sidebar-selected__delete | FIRST | CLICK
           - SELECT .filters-expand | ANY | CLICK
         selector: SELECT .sidebar-filter__header-title-text | IGNORE 0 | TEXT | TRIM | JOIN with=1
         other:
@@ -65,7 +64,6 @@ price-aggregator-api:
           actions:
             - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
             - WAIT 2000
-            - SELECT .sidebar-selected__delete | FIRST | CLICK
             - SELECT .filters-expand | ANY | CLICK
             - SELECT .filter-price__range-field | BY_INDEX 0 | INPUT value=$(['minPrice'])
             - SELECT .filter-price__range-field | BY_INDEX 1 | INPUT value=$(['maxPrice'])
