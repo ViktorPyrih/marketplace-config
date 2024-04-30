@@ -34,7 +34,6 @@ price-aggregator-api:
             - BY_ID maxPrice_ | INPUT value=$(['maxPrice'])
             - BY_ID match_submit | CLICK
             - SELECT div.page-num>a | FILTER text=$(['page']) | ANY | CLICK
-            - WAIT 2000
           image-selector: SELECT .list-img>img | ATTRIBUTE src
           link-selector: SELECT a.model-short-title | UNION with=1 | ATTRIBUTE href
           price-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
