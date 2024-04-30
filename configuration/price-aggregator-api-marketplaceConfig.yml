@@ -34,7 +34,7 @@ price-aggregator-api:
             - BY_ID maxPrice_ | INPUT value=$(['maxPrice'])
             - BY_ID match_submit | CLICK
             - SELECT div.page-num>a | FILTER text=$(['page']) | ANY | CLICK
-          image-selector: SELECT div.model-short-div>table>tbody>tr>td:first-child>div:first-child | SCREENSHOT | BASE64
+          image-selector: SELECT .list-img>img | ATTRIBUTE src
           link-selector: SELECT a.model-short-title | UNION with=1 | ATTRIBUTE href
           price-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
           description-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(2) | SCREENSHOT | BASE64
@@ -79,8 +79,8 @@ price-aggregator-api:
         actions:
           - BY_ID autosuggest | SELECT div>input | FIRST | INPUT value=$(['query']) | ENTER
           - WAIT 2000
-        image-selector: SELECT .list-item__img,.promo-list-item__img | SCREENSHOT | BASE64 | TO_LIST
-        link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href | TO_LIST
+        image-selector: SELECT .list-item__img>img,.promo-list-item__img>img | ATTRIBUTE src
+        link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href
         price-selector: SELECT .list-item__value--overlay,.promo-list-item__value--overlay | SCREENSHOT | BASE64 | TO_LIST
         description-selector: SELECT .list-item__info,.promo-list-item__info | SCREENSHOT | BASE64 | TO_LIST
         pages-count-selector: SELECT .page | TEXT | TRIM | LAST
