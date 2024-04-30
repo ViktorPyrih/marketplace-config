@@ -78,7 +78,7 @@ price-aggregator-api:
       search:
         actions:
           - BY_ID autosuggest | SELECT div>input | FIRST | INPUT value=$(['query']) | ENTER
-          - WAIT 10000
+          - WAIT 2000
         image-selector: SELECT .list-item__img,.promo-list-item__img | SCREENSHOT | BASE64 | TO_LIST
         link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href | TO_LIST
         price-selector: SELECT .list-item__value--overlay,.promo-list-item__value--overlay | SCREENSHOT | BASE64 | TO_LIST
