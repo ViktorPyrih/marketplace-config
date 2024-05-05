@@ -24,7 +24,7 @@ price-aggregator-api:
           actions:
             - SELECT a.mainmenu-link | FILTER text=$(['category']) | FIRST | HOVER
             - SELECT li.mainmenu-item | FILTER selector=a.mainmenu-link,text=$(['category']) | FIRST | SELECT a.mainmenu-subitem:last-child | FIRST | CLICK
-            - SELECT div.sub-katalogs-block | FILTER selector=a.sub-katalogs-link,text=$(['subcategory1']) | FIRST | CLICK
+            - SELECT a.sub-katalogs-link | FILTER selector=span.sub-katalogs-title,text=$(['subcategory1']) | FIRST | CLICK
             - BY_ID minPrice_ | INPUT value=$(['minPrice'])
             - BY_ID maxPrice_ | INPUT value=$(['maxPrice'])
             - BY_ID match_submit | CLICK
