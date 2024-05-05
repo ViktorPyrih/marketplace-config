@@ -42,7 +42,7 @@ price-aggregator-api:
         selector: SELECT .catalog-search__sections-item | TEXT
       subcategories:
         - selector: SELECT .catalog-sections__item | FILTER selector=.catalog-sections__name,text=$(['category']) | SELECT .catalog-sections-sub-catalog__title | TEXT | TRIM
-        - selector: SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory']) | FIRST | SELECT .catalog-sections-sub-catalog__item | TEXT
+        - selector: SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__item | TEXT
       filters:
         actions:
           - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
