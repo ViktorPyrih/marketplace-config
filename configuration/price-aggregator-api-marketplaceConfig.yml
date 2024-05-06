@@ -37,9 +37,22 @@ price-aggregator-api:
           link-selector: SELECT a.model-short-title | UNION with=1 | ATTRIBUTE href
           price-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
           description-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(2) | SCREENSHOT | BASE64
+          title-selector: SELECT a.model-short-title | UNION with=1 | TEXT
           pages-count-selector: SELECT div.page-num>a | TEXT | LAST
           other:
             - SELECT td.model-short-info>div:nth-child(1)>a
+      search:
+        actions:
+          - BY_ID ek-search | INPUT value=$(['query']) | ENTER
+          - SELECT td.all_results>ul>li:first-child>div>div.search-cat-subcat>div:first-child>a | ANY | CLICK
+        image-selector: SELECT div.model-short-div>table>tbody>tr>td:first-child>div:first-child | SCREENSHOT | BASE64
+        link-selector: SELECT a.model-short-title | UNION with=1 | ATTRIBUTE href
+        price-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
+        description-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(2) | SCREENSHOT | BASE64
+        title-selector: SELECT a.model-short-title | UNION with=1 | TEXT
+        pages-count-selector: SELECT div.page-num>a | TEXT | LAST
+        other:
+          - SELECT td.model-short-info>div:nth-child(1)>a
     hotline:
       url: https://hotline.ua/ua/catalog/
       categories:
@@ -73,6 +86,7 @@ price-aggregator-api:
           link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href
           price-selector: SELECT .list-item__value--overlay,.promo-list-item__value--overlay | SCREENSHOT | BASE64
           description-selector: SELECT .list-item__info,.promo-list-item__info | SCREENSHOT | BASE64
+          title-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | TEXT
           pages-count-selector: SELECT .page | TEXT | TRIM | LAST
       search:
         actions:
@@ -82,4 +96,5 @@ price-aggregator-api:
         link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href
         price-selector: SELECT .list-item__value--overlay,.promo-list-item__value--overlay | SCREENSHOT | BASE64
         description-selector: SELECT .list-item__info,.promo-list-item__info | SCREENSHOT | BASE64
+        title-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | TEXT
         pages-count-selector: SELECT .page | TEXT | TRIM | LAST
