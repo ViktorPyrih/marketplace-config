@@ -45,6 +45,7 @@ price-aggregator-api:
         actions:
           - BY_ID ek-search | INPUT value=$(['query']) | ENTER
           - SELECT td.all_results>ul>li:first-child>div>div.search-cat-subcat>div:first-child>a | ANY | CLICK
+          - WAIT 2000
         image-selector: SELECT div.model-short-div>table>tbody>tr>td:first-child>div:first-child | SCREENSHOT | BASE64
         link-selector: SELECT a.model-short-title | UNION with=1 | ATTRIBUTE href
         price-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
