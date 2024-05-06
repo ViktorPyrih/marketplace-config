@@ -17,7 +17,7 @@ price-aggregator-api:
         actions:
           - SELECT a.mainmenu-link | FILTER text=$(['category']) | FIRST | HOVER
           - SELECT li.mainmenu-item | FILTER selector=a.mainmenu-link,text=$(['category']) | FIRST | SELECT a.mainmenu-subitem:last-child | FIRST | CLICK
-          - SELECT a.sub-katalogs-link | FILTER selector=span.sub-katalogs-title,text=$(['subcategory1']) | FIRST | CLICK
+          - SELECT div.sub-katalogs-block | FILTER selector=a.sub-katalogs-link>span.sub-katalogs-title,text=$(['subcategory1']) | FIRST | SELECT div.sub-katalogs-childs>a | FILTER text=$(['subcategory2']) | FIRST | CLICK
         selector: SELECT div.h2.h2-open | TEXT | JOIN with=1
         other:
           - SELECT ul.list>li.match-li-href | GROUP_BY parent_id | TEXT
@@ -28,7 +28,7 @@ price-aggregator-api:
           actions:
             - SELECT a.mainmenu-link | FILTER text=$(['category']) | FIRST | HOVER
             - SELECT li.mainmenu-item | FILTER selector=a.mainmenu-link,text=$(['category']) | FIRST | SELECT a.mainmenu-subitem:last-child | FIRST | CLICK
-            - SELECT a.sub-katalogs-link | FILTER selector=span.sub-katalogs-title,text=$(['subcategory1']) | FIRST | CLICK
+            - SELECT div.sub-katalogs-block | FILTER selector=a.sub-katalogs-link>span.sub-katalogs-title,text=$(['subcategory1']) | FIRST | SELECT div.sub-katalogs-childs>a | FILTER text=$(['subcategory2']) | FIRST | CLICK
             - BY_ID minPrice_ | INPUT value=$(['minPrice'])
             - BY_ID maxPrice_ | INPUT value=$(['maxPrice'])
             - BY_ID match_submit | CLICK
@@ -45,7 +45,6 @@ price-aggregator-api:
         actions:
           - BY_ID ek-search | INPUT value=$(['query']) | ENTER
           - SELECT td.all_results>ul>li:first-child>div>div.search-cat-subcat>div:first-child>a | ANY | CLICK
-          - WAIT 2000
         image-selector: SELECT .list-img>img | ATTRIBUTE src
         link-selector: SELECT a.model-short-title | UNION with=1 | ATTRIBUTE href
         price-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
