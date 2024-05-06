@@ -23,7 +23,7 @@ price-aggregator-api:
           - SELECT ul.list>li.match-li-href | GROUP_BY parent_id | TEXT
       products:
         filters:
-          template: SELECT .match-li-href | FILTER text=$(['value_%d']) | ANY | CLICK
+          template: SELECT li.match-li-href>label | FILTER text=$(['value_%d']) | ANY | CLICK
         self:
           actions:
             - SELECT a.mainmenu-link | FILTER text=$(['category']) | FIRST | HOVER
@@ -91,7 +91,6 @@ price-aggregator-api:
       search:
         actions:
           - BY_ID autosuggest | SELECT div>input | FIRST | INPUT value=$(['query']) | ENTER
-          - WAIT 4000
         image-selector: SELECT .list-item__img>img,.promo-list-item__img>img | ATTRIBUTE src
         link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href
         price-selector: SELECT .list-item__value--overlay,.promo-list-item__value--overlay | SCREENSHOT | BASE64
