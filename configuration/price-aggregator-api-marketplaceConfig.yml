@@ -43,7 +43,8 @@ price-aggregator-api:
             - SELECT td.model-short-info>div:nth-child(1)>a
       search:
         actions:
-          - BY_ID ek-search | INPUT value=$(['query']) | ENTER
+          - BY_ID ek-search | INPUT value=$(['query'])
+          - SELECT div.header_search_btn-submit>button | FIRST | CLICK
           - SELECT td.all_results>ul>li:first-child>div>div.search-cat-subcat>div:first-child>a | ANY | CLICK
         image-selector: SELECT .list-img>img | ATTRIBUTE src
         link-selector: SELECT a.model-short-title | UNION with=1 | ATTRIBUTE href
