@@ -65,6 +65,7 @@ price-aggregator-api:
         actions:
           - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
           - WAIT 2000
+          - SELECT .modal__footer>div>button:nth-child(2) | ANY | CLICK
           - SELECT .filters-expand | ANY | CLICK
           - WAIT 1000
         selector: SELECT .sidebar-filter__header-title-text | IGNORE 0 | TEXT | TRIM | JOIN with=1
@@ -76,6 +77,7 @@ price-aggregator-api:
         self:
           actions:
             - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
+            - SELECT .modal__footer>div>button:nth-child(2) | ANY | CLICK
             - WAIT 2000
             - SELECT .filters-expand | ANY | CLICK
             - SELECT .filter-price__range-field | BY_INDEX 0 | INPUT value=$(['minPrice'])
