@@ -35,9 +35,10 @@ price-aggregator-api:
             - SELECT div.page-num>a | FILTER text=$(['page']) | ANY | CLICK
           image-selector: SELECT .list-img>img | ATTRIBUTE src
           link-selector: SELECT a.model-short-title | UNION with=1 | ATTRIBUTE href
-          price-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
-          description-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(2) | SCREENSHOT | BASE64
+          price-img-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
+          description-img-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(2) | SCREENSHOT | BASE64
           title-selector: SELECT a.model-short-title | UNION with=1 | TEXT
+          price-selector: SELECT div.model-price-range>a | TEXT
           pages-count-selector: SELECT div.page-num>a | TEXT | LAST
           other:
             - SELECT td.model-short-info>div:nth-child(1)>a
@@ -48,9 +49,10 @@ price-aggregator-api:
           - SELECT td.all_results>ul>li:first-child>div>div.search-cat-subcat>div:first-child>a | ANY | CLICK
         image-selector: SELECT .list-img>img | ATTRIBUTE src
         link-selector: SELECT a.model-short-title | UNION with=1 | ATTRIBUTE href
-        price-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
-        description-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(2) | SCREENSHOT | BASE64
+        price-img-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
+        description-img-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(2) | SCREENSHOT | BASE64
         title-selector: SELECT a.model-short-title | UNION with=1 | TEXT
+        price-selector: SELECT div.model-price-range>a | TEXT
         pages-count-selector: SELECT div.page-num>a | TEXT | LAST
         other:
           - SELECT td.model-short-info>div:nth-child(1)>a
@@ -87,9 +89,10 @@ price-aggregator-api:
             - SELECT .page | FILTER text=$(['page']) | ANY | CLICK alignToTop=true
           image-selector: SELECT .list-item__img>img,.promo-list-item__img>img | ATTRIBUTE src
           link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href
-          price-selector: SELECT .list-item__value--overlay,.promo-list-item__value--overlay | SCREENSHOT | BASE64
-          description-selector: SELECT .list-item__info,.promo-list-item__info | SCREENSHOT | BASE64
+          price-img-selector: SELECT .list-item__value--overlay,.promo-list-item__value--overlay | SCREENSHOT | BASE64
+          description-img-selector: SELECT .list-item__info,.promo-list-item__info | SCREENSHOT | BASE64
           title-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | TEXT
+          price-selector: SELECT .list-item__value--overlay>div>div | TEXT
           pages-count-selector: SELECT .page | TEXT | TRIM | LAST
       search:
         actions:
@@ -97,7 +100,8 @@ price-aggregator-api:
           - WAIT 2000
         image-selector: SELECT .list-item__img>img,.promo-list-item__img>img | ATTRIBUTE src
         link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href
-        price-selector: SELECT .list-item__value--overlay,.promo-list-item__value--overlay | SCREENSHOT | BASE64
-        description-selector: SELECT .list-item__info,.promo-list-item__info | SCREENSHOT | BASE64
+        price-img-selector: SELECT .list-item__value--overlay,.promo-list-item__value--overlay | SCREENSHOT | BASE64
+        description-img-selector: SELECT .list-item__info,.promo-list-item__info | SCREENSHOT | BASE64
         title-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | TEXT
+        price-selector: SELECT .list-item__value--overlay>div>div | TEXT
         pages-count-selector: SELECT .page | TEXT | TRIM | LAST
