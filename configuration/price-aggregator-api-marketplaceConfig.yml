@@ -64,7 +64,7 @@ price-aggregator-api:
       filters:
         actions:
           - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
-          - WAIT 1000
+          - WAIT 2000
           - SELECT .filters-expand | ANY | CLICK
           - WAIT 1000
         selector: SELECT .sidebar-filter__header-title-text | IGNORE 0 | TEXT | TRIM | JOIN with=1
@@ -92,7 +92,7 @@ price-aggregator-api:
       search:
         actions:
           - BY_ID autosuggest | SELECT div>input | FIRST | INPUT value=$(['query']) | ENTER
-          - WAIT 1000
+          - WAIT 2000
         image-selector: SELECT .list-item__img>img,.promo-list-item__img>img | ATTRIBUTE src
         link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href
         price-selector: SELECT .list-item__value--overlay,.promo-list-item__value--overlay | SCREENSHOT | BASE64
