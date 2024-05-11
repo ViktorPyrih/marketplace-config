@@ -23,6 +23,7 @@ price-aggregator-api:
           - SELECT ul.list>li.match-li-href | GROUP_BY parent_id | TEXT
       products:
         filters:
+          index: 5
           template: SELECT li.match-li-href>label | FILTER text=$(['value_%d']) | ANY | CLICK
         self:
           actions:
@@ -75,6 +76,7 @@ price-aggregator-api:
           - SELECT .filter-checklist__item | VISIBLE | GROUP_BY parent | TEXT
       products:
         filters:
+          index: 7
           template: SELECT .sidebar-filters__item | FILTER selector=.sidebar-filter__header-title-text,text=$(['key_%d']) | ANY | SELECT .filter-checklist__item-name | FILTER text=$(['value_%d']) | ANY | CLICK
         self:
           actions:
