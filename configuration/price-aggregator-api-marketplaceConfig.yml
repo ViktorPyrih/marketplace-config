@@ -47,6 +47,7 @@ price-aggregator-api:
           other:
             - SELECT td.model-short-info>div:nth-child(1)>a
       search:
+        ai-enabled: true
         actions:
           - BY_ID ek-search | INPUT value=$(['query'])
           - SELECT div.header_search_btn-submit>button | FIRST | CLICK
