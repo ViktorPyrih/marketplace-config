@@ -68,9 +68,14 @@ price-aggregator-api:
       subcategories:
         - selector: SELECT .catalog-sections__item | FILTER selector=.catalog-sections__name,text=$(['category']) | SELECT .catalog-sections-sub-catalog__title | TEXT | TRIM
         - selector: SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__item | TEXT
+        - actions:
+            - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
+            - WAIT 2000
+          selector: SELECT .section-navigation__link | TEXT
       filters:
         actions:
           - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
+          - SELECT .section-navigation__link | FILTER text=$(['category3']) | ANY | CLICK
           - WAIT 2000
           - SELECT .modal__footer>div>button:nth-child(2) | ANY | CLICK
           - SELECT .filters-expand | ANY | CLICK
@@ -80,11 +85,12 @@ price-aggregator-api:
           - SELECT .filter-checklist__item | VISIBLE | GROUP_BY parent | TEXT
       products:
         filters:
-          index: 7
+          index: 8
           template: SELECT .sidebar-filters__item | FILTER selector=.sidebar-filter__header-title-text,text=$(['key_%d']) | ANY | SELECT .filter-checklist__item-name | FILTER text=$(['value_%d']) | ANY | CLICK
         self:
           actions:
             - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
+            - SELECT .section-navigation__link | FILTER text=$(['category3']) | ANY | CLICK
             - SELECT .modal__footer>div>button:nth-child(2) | ANY | CLICK
             - WAIT 2000
             - SELECT .filters-expand | ANY | CLICK
