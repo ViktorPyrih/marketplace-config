@@ -82,6 +82,7 @@ price-aggregator-api:
       filters:
         actions:
           - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
+          - WAIT 2000
           - SELECT .section-navigation__link | FILTER text=$(['category3']) | ANY | CLICK
           - WAIT 2000
           - SELECT .modal__footer>div>button:nth-child(2) | ANY | CLICK
