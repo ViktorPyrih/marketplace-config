@@ -70,34 +70,29 @@ price-aggregator-api:
         - selector: SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__item | TEXT
         - actions:
             - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
-            - WAIT 2000
           selector: SELECT .section-navigation__link | TEXT
       filters:
         actions:
           - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
           - SELECT .section-navigation__link | FILTER text=$(['category3']) | ANY | CLICK
-          - WAIT 2000
           - SELECT .modal__footer>div>button:nth-child(2) | ANY | CLICK
           - SELECT .filters-expand | ANY | CLICK
-          - WAIT 1000
         selector: SELECT .sidebar-filter__header-title-text | IGNORE 0 | TEXT | TRIM | JOIN with=1
         other:
           - SELECT .filter-checklist__item | VISIBLE | GROUP_BY parent | TEXT
       products:
         filters:
-          index: 8
+          index: 7
           template: SELECT .sidebar-filters__item | FILTER selector=.sidebar-filter__header-title-text,text=$(['key_%d']) | ANY | SELECT .filter-checklist__item-name | FILTER text=$(['value_%d']) | ANY | CLICK
         self:
           actions:
             - SELECT .catalog-sections__item | FILTER selector=.catalog-sections__title,text=$(['category']) | FIRST | SELECT .catalog-sections__sub-catalog | FILTER selector=.catalog-sections-sub-catalog__title,text=$(['subcategory1']) | FIRST | SELECT .catalog-sections-sub-catalog__link | FILTER text=$(['subcategory2']) | FIRST | CLICK
             - SELECT .section-navigation__link | FILTER text=$(['category3']) | ANY | CLICK
             - SELECT .modal__footer>div>button:nth-child(2) | ANY | CLICK
-            - WAIT 2000
             - SELECT .filters-expand | ANY | CLICK
             - SELECT .filter-price__range-field | BY_INDEX 0 | INPUT value=$(['minPrice'])
             - SELECT .filter-price__range-field | BY_INDEX 1 | INPUT value=$(['maxPrice'])
             - SELECT .filter-price__range-btn | FIRST | CLICK
-            - WAIT 1000
             - SELECT .page | FILTER text=$(['page']) | ANY | CLICK alignToTop=true
           image-selector: SELECT .list-item__img>img,.promo-list-item__img>img | ATTRIBUTE src
           link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href
@@ -109,7 +104,6 @@ price-aggregator-api:
       search:
         actions:
           - BY_ID autosuggest | SELECT div>input | FIRST | INPUT value=$(['query']) | ENTER
-          - WAIT 2000
         image-selector: SELECT .list-item__img>img,.promo-list-item__img>img | ATTRIBUTE src
         link-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | ATTRIBUTE href
         price-img-selector: SELECT .list-item__value--overlay,.promo-list-item__value--overlay | SCREENSHOT | BASE64
