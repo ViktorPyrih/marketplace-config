@@ -3,27 +3,23 @@ price-aggregator-api:
     ekatalog:
       url: https://ek.ua/ua/
       categories:
-        selector: SELECT a.mainmenu-link | IGNORE 7,14 | TEXT | TRIM
+        selector: SELECT div.s-catalog-subcat>a | TEXT
       subcategories:
         - actions:
-            - SELECT a.mainmenu-link | FILTER text=$(['category']) | FIRST | HOVER
-            - SELECT li.mainmenu-item | FILTER selector=a.mainmenu-link,text=$(['category']) | FIRST | SELECT a.mainmenu-subitem:last-child | FIRST | CLICK
+            - SELECT div.s-catalog-subcat>a | FILTER text=$(['category']) | FIRST | CLICK
           selector: SELECT span.sub-katalogs-title | TEXT
         - actions:
-            - SELECT a.mainmenu-link | FILTER text=$(['category']) | FIRST | HOVER
-            - SELECT li.mainmenu-item | FILTER selector=a.mainmenu-link,text=$(['category']) | FIRST | SELECT a.mainmenu-subitem:last-child | FIRST | CLICK
+            - SELECT div.s-catalog-subcat>a | FILTER text=$(['category']) | FIRST | CLICK
             - SELECT span.sub-katalogs-title | FILTER text=$(['subcategory1']) | FIRST | CLICK
           selector: SELECT span.sub-katalogs-title | TEXT
         - actions:
-            - SELECT a.mainmenu-link | FILTER text=$(['category']) | FIRST | HOVER
-            - SELECT li.mainmenu-item | FILTER selector=a.mainmenu-link,text=$(['category']) | FIRST | SELECT a.mainmenu-subitem:last-child | FIRST | CLICK
+            - SELECT div.s-catalog-subcat>a | FILTER text=$(['category']) | FIRST | CLICK
             - SELECT span.sub-katalogs-title | FILTER text=$(['subcategory1']) | FIRST | CLICK
             - SELECT span.sub-katalogs-title | FILTER text=$(['subcategory2']) | ANY | CLICK
           selector: SELECT span.sub-katalogs-title | TEXT
       filters:
         actions:
-          - SELECT a.mainmenu-link | FILTER text=$(['category']) | FIRST | HOVER
-          - SELECT li.mainmenu-item | FILTER selector=a.mainmenu-link,text=$(['category']) | FIRST | SELECT a.mainmenu-subitem:last-child | FIRST | CLICK
+          - SELECT div.s-catalog-subcat>a | FILTER text=$(['category']) | FIRST | CLICK
           - SELECT span.sub-katalogs-title | FILTER text=$(['subcategory1']) | FIRST | CLICK
           - SELECT span.sub-katalogs-title | FILTER text=$(['subcategory2']) | ANY | CLICK
           - SELECT span.sub-katalogs-title | FILTER text=$(['subcategory3']) | ANY | CLICK
@@ -36,10 +32,10 @@ price-aggregator-api:
           template: SELECT li.match-li-href>label | FILTER text=$(['value_%d']) | ANY | CLICK
         self:
           actions:
-            - SELECT a.mainmenu-link | FILTER text=$(['category']) | FIRST | HOVER
-            - SELECT li.mainmenu-item | FILTER selector=a.mainmenu-link,text=$(['category']) | FIRST | SELECT a.mainmenu-subitem:last-child | FIRST | CLICK
+            - SELECT div.s-catalog-subcat>a | FILTER text=$(['category']) | FIRST | CLICK
             - SELECT span.sub-katalogs-title | FILTER text=$(['subcategory1']) | FIRST | CLICK
             - SELECT span.sub-katalogs-title | FILTER text=$(['subcategory2']) | ANY | CLICK
+            - SELECT span.sub-katalogs-title | FILTER text=$(['subcategory3']) | ANY | CLICK
             - BY_ID minPrice_ | INPUT value=$(['minPrice'])
             - BY_ID maxPrice_ | INPUT value=$(['maxPrice'])
             - BY_ID match_submit | CLICK
