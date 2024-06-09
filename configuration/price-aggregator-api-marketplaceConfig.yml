@@ -19,6 +19,7 @@ price-aggregator-api:
           selector: SELECT span.sub-katalogs-title | TEXT
       filters:
         actions:
+          - WAIT 1000
           - SELECT div.s-catalog-subcat>a | FILTER text=$(['category']) | FIRST | CLICK
           - SELECT span.sub-katalogs-title | FILTER text=$(['subcategory1']) | FIRST | CLICK
           - SELECT span.sub-katalogs-title | FILTER text=$(['subcategory2']) | ANY | CLICK
