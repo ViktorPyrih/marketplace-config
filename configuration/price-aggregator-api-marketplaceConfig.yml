@@ -28,7 +28,7 @@ price-aggregator-api:
           - SELECT ul.list>li.match-li-href | GROUP_BY parent_id | TEXT
       products:
         filters:
-          index: 6
+          index: 7
           template: SELECT li.match-li-href>label | FILTER text=$(['value_%d']) | ANY | CLICK
         self:
           actions:
@@ -38,6 +38,7 @@ price-aggregator-api:
             - SELECT span.sub-katalogs-title | FILTER text=$(['subcategory3']) | ANY | CLICK
             - BY_ID minPrice_ | INPUT value=$(['minPrice'])
             - BY_ID maxPrice_ | INPUT value=$(['maxPrice'])
+            - SELECT div.show-all>span:first-child | CLICK
             - BY_ID match_submit | CLICK
             - SELECT div.page-num>a | FILTER text=$(['page']) | ANY | CLICK
           image-selector: SELECT .list-img>img | ATTRIBUTE src
