@@ -41,6 +41,7 @@ price-aggregator-api:
             - SELECT div.show-all>span:first-child | CLICK
             - BY_ID match_submit | CLICK
             - SELECT div.page-num>a | FILTER text=$(['page']) | ANY | CLICK
+            - SELECT a.list-view-type-link | BY_INDEX 0 | CLICK
           image-selector: SELECT .list-img>img | ATTRIBUTE src
           link-selector: SELECT a.model-short-title | UNION with=1 | ATTRIBUTE href
           price-img-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
@@ -62,7 +63,6 @@ price-aggregator-api:
         description-img-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(2) | SCREENSHOT | BASE64
         title-selector: SELECT a.model-short-title | UNION with=1 | TEXT
         price-selector: SELECT div.model-price-range>a | TEXT
-        pages-count-selector: SELECT div.page-num>a | TEXT | LAST
         other:
           - SELECT td.model-short-info>div:nth-child(1)>a
     hotline:
@@ -122,4 +122,3 @@ price-aggregator-api:
         description-img-selector: SELECT .list-item__info,.promo-list-item__info | SCREENSHOT | BASE64
         title-selector: SELECT .item-title,.promo-list-item__title | VISIBLE | TEXT
         price-selector: SELECT .list-item__value--overlay>div>div | TEXT
-        pages-count-selector: SELECT .page | TEXT | TRIM | LAST
