@@ -43,14 +43,12 @@ price-aggregator-api:
             - SELECT div.page-num>a | FILTER text=$(['page']) | ANY | CLICK
             - SELECT a.list-view-type-link | BY_INDEX 0 | CLICK
           image-selector: SELECT .list-img>img | ATTRIBUTE src
-          link-selector: SELECT a.model-short-title | UNION with=1 | ATTRIBUTE href
+          link-selector: SELECT a.model-short-title,td.model-short-info>div:nth-child(1)>a | ATTRIBUTE href
           price-img-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
           description-img-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(2) | SCREENSHOT | BASE64
-          title-selector: SELECT a.model-short-title | UNION with=1 | TEXT
-          price-selector: SELECT div.model-price-range>a | TEXT
+          title-selector: SELECT a.model-short-title,td.model-short-info>div:nth-child(1)>a | TEXT
+          price-selector: SELECT div.model-price-range>a,td.model-hot-prices-td>div>div>div>a>div:first-child | TEXT
           pages-count-selector: SELECT div.page-num>a | TEXT | LAST
-          other:
-            - SELECT td.model-short-info>div:nth-child(1)>a
       search:
         ai-enabled: true
         actions:
@@ -58,13 +56,11 @@ price-aggregator-api:
           - SELECT div.header_search_btn-submit>button | FIRST | CLICK
           - SELECT td.all_results>ul>li:first-child>div>div.search-cat-subcat>div:first-child>a | ANY | CLICK
         image-selector: SELECT .list-img>img | ATTRIBUTE src
-        link-selector: SELECT a.model-short-title | UNION with=1 | ATTRIBUTE href
+        link-selector: SELECT a.model-short-title,td.model-short-info>div:nth-child(1)>a | ATTRIBUTE href
         price-img-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(3) | SCREENSHOT | BASE64
         description-img-selector: SELECT div.model-short-div>table>tbody>tr>td:nth-child(2) | SCREENSHOT | BASE64
-        title-selector: SELECT a.model-short-title | UNION with=1 | TEXT
+        title-selector: SELECT a.model-short-title,td.model-short-info>div:nth-child(1)>a | TEXT
         price-selector: SELECT div.model-price-range>a | TEXT
-        other:
-          - SELECT td.model-short-info>div:nth-child(1)>a
     hotline:
       url: https://hotline.ua/ua/catalog/
       categories:
